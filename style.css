@@ -1,0 +1,131 @@
+/* ===== Reset ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* ===== Variáveis (escuro por padrão) ===== */
+:root {
+  --bg-url: url("./assets/image.png");            /* fundo ESCURO */
+  --bg-color: #000000;
+  --text-color: #ffffff;
+  --icon-color: #ffffff;
+
+  --surface-color: rgba(255, 255, 255, 0.1);
+  --surface-color-hover: rgba(255, 255, 255, 0.05);
+  --stroke-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Tema CLARO quando <html> tiver .light */
+html.light {
+  --bg-url: url("./assets/bg-mobile-light.png");   /* fundo CLARO */
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --icon-color: #000000;
+
+  --surface-color: rgba(0, 0, 0, 0.05);
+  --surface-color-hover: rgba(0, 0, 0, 0.02);
+  --stroke-color: rgba(0, 0, 0, 0.5);
+}
+
+/* ===== Base ===== */
+html, body { height: 100%; }
+body {
+  background-color: var(--bg-color);       /* fallback sólido */
+  background-image: var(--bg-url);         /* imagem do tema */
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+  color: var(--text-color);
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+ion-icon { color: var(--text-color); }     /* redes sociais seguem o tema */
+
+/* ===== Container ===== */
+#container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 24px;
+  text-align: center;
+}
+
+/* ===== Profile ===== */
+#profile { padding: 16px 0 8px; }
+#profile img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 2px solid var(--stroke-color);
+  object-fit: cover;
+}
+#profile p {
+  margin-top: 8px;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+/* ===== Switch ===== */
+#switch { margin: 20px 0; display: flex; justify-content: center; }
+#theme-toggle {
+  background: var(--surface-color);
+  border: 1px solid var(--stroke-color);
+  color: var(--text-color);
+  width: 64px; height: 36px;
+  border-radius: 9999px;
+  display: grid; place-items: center;
+  cursor: pointer;
+  position: relative;
+  transition: background .2s, border .2s;
+}
+
+/* Ícones dentro do botão */
+#theme-toggle svg { width: 20px; height: 20px; }
+
+/* Por padrão (escuro): mostra lua e esconde sol */
+#theme-toggle .icon-sun { display: none; }
+#theme-toggle .icon-moon { display: inline; }
+
+/* No tema claro, inverte: mostra sol, esconde lua */
+html.light #theme-toggle .icon-sun { display: inline; }
+html.light #theme-toggle .icon-moon { display: none; }
+
+/* ===== Links ===== */
+ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px 0;
+}
+ul li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 24px;
+  background: var(--surface-color);
+  border: 1px solid var(--stroke-color);
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 500;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: background 0.2s, border 0.2s;
+}
+ul li a:hover {
+  background: var(--surface-color-hover);
+  border: 1.5px solid var(--text-color);
+}
+
+/* ===== Social ===== */
+#social-links {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  padding: 24px 0;
+  font-size: 28px;
+}
+#social-links a { display: inline-flex; color: var(--text-color); }
+
+/* ===== Responsivo ===== */
+@media (min-width: 700px) {
+  body { background-attachment: fixed; }
+}
